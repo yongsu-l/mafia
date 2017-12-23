@@ -8,7 +8,8 @@ try{
     var hat = require('hat');                       // Library for generating random ids
     require('dotenv').config();                     // Library to allow the importing of  enviromental variables in .env files
     var cors = require('cors');                     // Cross origin resource sharing
-    var logger = require('./utils/logger.js');      // Winston Logger
+    var colors =require('colors')
+    console.clear();
 } catch(error){
     console.error("ERROR are all the Dependencies installed?");
     console.log(error);
@@ -25,29 +26,29 @@ var db = mongoose.connection;
 
 db.once('open', function() {
   // we're connected!
-  logger.log("info", "Status Code " + mongoose.connection.readyState + " Connected");
+  console.info("Status Code " + mongoose.connection.readyState + " Connected");
 
 });
 
 // When the connection is disconnected
 db.on('disconnected', function () {
-  logger.log("info", 'Mongoose default connection disconnected');
+  console.info( 'Mongoose default connection disconnected'.red);
 });
 
 db.on('error', function(){
-  logger.log("error", "ERROR Status Code " + mongoose.connection.readyState);
+  console.info( "ERROR Status Code ".Red + mongoose.connection.readyState);
 });
 
 // If the Node process ends, close the Mongoose connection
 process.on('SIGINT', function() {
   db.close(function () {
-    logger.log('info', 'Mongoose default connection disconnected through app termination');
+    console.error( 'Mongoose default connection disconnected through app termination');
     process.exit(0);
   });
 });
 
 
-logger.log('info', "Server Starting");
+console.info("Server Starting");
 
 
 var app = express(); // Define our app
@@ -61,12 +62,10 @@ app.use(bodyParser.json());
 // ROUTES FOR API
 // ===============================================
 var apiRouter = require('./routes/api');
-var sudoApiRouter = require('./routes/sudoApi');
 // REGISTER ROUTES --------------------------
 // All api routes will be prefixed with /api
 app.use('/api', apiRouter);
-app.use('/sudoApi', sudoApiRouter);
 
 app.listen(port);
-
-console.log("Mafia RESTful API Server Started on PORT " + port);
+// console.clear();
+console.log("Mafia RESTful API Server Started on PORT ".green + port);
