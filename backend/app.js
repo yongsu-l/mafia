@@ -21,7 +21,7 @@ var port = 3001;
 
 // Mongodb Config
 mongoose.connect(process.env.DB_URL,{useMongoClient:true}); // Connect to database on Server
-console.log("Connecting too " + process.env.DB_URL)
+console.log("Connecting to " + process.env.DB_URL)
 var db = mongoose.connection;
 
 db.once('open', function() {
