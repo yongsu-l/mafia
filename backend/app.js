@@ -27,7 +27,6 @@ var db = mongoose.connection;
 db.once('open', function() {
   // we're connected!
   console.info("Status Code " + mongoose.connection.readyState + " Connected");
-
 });
 
 // When the connection is disconnected
@@ -51,13 +50,13 @@ process.on('SIGINT', function() {
 console.info("Server Starting");
 
 
-var app = express(); // Define our app
+var app = express();                                // Define our app
+var server = require('http').Server(app);           // Define server
+var io = require('socket.io').listen(server);       // Define socketio
 
 app.use(cors());
-// Configure app to use bodyParser()
-// This will let us get data from a POST
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));    // Configure app to use bodyParser()
+app.use(bodyParser.json());                         // This will let us get data from a POST
 
 // ROUTES FOR API
 // ===============================================
