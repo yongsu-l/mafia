@@ -14,6 +14,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^4.14.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
     "nodemon": "^1.12.5"
   },
   "homepage": "https://github.com/Yong-L/Mafia/",
