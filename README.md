@@ -8,27 +8,31 @@ WIP
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
 ```
-Give examples
+Nodejs
+NPM
 ```
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+First navigate into mafia/backend
 
 ```
-Give the example
+cd Backend
 ```
 
-And repeat
+And install the necessary Dependencies
 
 ```
-until finished
+Using npm install
 ```
+
+Create a .env file in this directory with the link to your Mongodb database
+
+```
+DB_URL=mongodb://username:password@url:port/db_name
+```
+
 
 End with an example of getting some data out of the system or using it for a little demo
 
