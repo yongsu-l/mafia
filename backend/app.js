@@ -9,6 +9,7 @@ try{
     require('dotenv').config();                     // Library to allow the importing of  enviromental variables in .env files
     var cors = require('cors');                     // Cross origin resource sharing
     var colors =require('colors')
+    var io = require('socket.io')();                // Define socketio
     console.clear();
 } catch(error){
     console.error("ERROR are all the Dependencies installed?");
@@ -51,8 +52,6 @@ console.info("Server Starting");
 
 
 var app = express();                                // Define our app
-var server = require('http').Server(app);           // Define server
-var io = require('socket.io').listen(server);       // Define socketio
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));    // Configure app to use bodyParser()
@@ -64,6 +63,16 @@ var apiRouter = require('./routes/api');
 // REGISTER ROUTES --------------------------
 // All api routes will be prefixed with /api
 app.use('/api', apiRouter);
+
+
+io.on('connection', (client)=> {
+  console.log('a user connected');
+  io.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
+
+io.listen(3002);
 
 app.listen(port);
 // console.clear();
