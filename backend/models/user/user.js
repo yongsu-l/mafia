@@ -1,8 +1,10 @@
 // user.js
-
 var mongoose = require('mongoose');
-var UserSchema = new mongoose.Schema({
-    type: String
+
+var userSchema = new mongoose.Schema({
+    username: String,
+    type: String,
+    alive: Boolean
 });
 mongoose.model('User', UserSchema);
 
